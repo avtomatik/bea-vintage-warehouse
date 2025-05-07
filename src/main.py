@@ -7,12 +7,13 @@ Created on Mon Aug 21 20:28:35 2023
 """
 
 
-from core.backend import get_kwargs
-from core.classes import URL, SeriesID
-
 from stats.src.usa.bea.backend import read_usa_bea_excel
 
-if __name__ == '__main__':
+from core.classes import URL, SeriesID
+from core.utils import get_kwargs
+
+
+def main():
     [
         # =====================================================================
         # Fixed Assets Series: K160021, 1951--2011
@@ -20,12 +21,12 @@ if __name__ == '__main__':
         # =====================================================================
         # K10002 << K100021 << K160021
         # =====================================================================
-        SeriesID('k1n31gd1es00', URL.FIAS)
+        SeriesID("k1n31gd1es00", URL.FIAS)
     ] or [
         # =====================================================================
         # Fixed Assets Series: K10070
         # =====================================================================
-        SeriesID('K10070' or 'K10002' or 'K16002', URL.NIPA)
+        SeriesID("K10070" or "K10002" or "K16002", URL.NIPA)
     ] or [
         # =========================================================
         # U.S. Bureau of Economic Analysis, Produced assets, closing balance: Fixed assets (DISCONTINUED) [K160491A027NBEA], retrieved from FRED, Federal Reserve Bank of St. Louis;
@@ -37,11 +38,15 @@ if __name__ == '__main__':
         # =========================================================
         # 'K16049' Replaced with 'K10070' in 'combine_combined_archived()'
         # =========================================================
-        SeriesID('K16049', URL.NIPA)
+        SeriesID("K16049", URL.NIPA)
     ]
 
     # =============================================================================
     # Fixed Assets Series: K160021, 1951--1969
     # =============================================================================
-    SERIES_ID = 'K160021'
+    SERIES_ID = "K160021"
     read_usa_bea_excel(**get_kwargs()).loc[:, [SERIES_ID]]
+
+
+if __name__ == "__main__":
+    main()

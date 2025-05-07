@@ -122,3 +122,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Apple Desktop Services Store
+.DS_Store
+
+# DuckDB
+*.duckdb
+
+# VS Code
+.vscode/
